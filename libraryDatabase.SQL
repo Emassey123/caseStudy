@@ -117,48 +117,71 @@ VALUES ("Samantha", "Greene", 123456, 250),
         
 -- STORED QUERIES
 
--- Allows yopu to be like Justin and delete the entire database
-SET SQL_SAFE_UPDATES = 0;
-DROP DATABASE caseStudy3;
--- Get a list of all the people in the database waiting to have a role aplied to them
-SELECT * 
-FROM people;
--- Get a list of all the current customers in the database 
-SELECT * 
-FROM customer;
+--CREATE
 -- Add a new person to the database even if they don't have a role yet
 INSERT INTO people (person_fname, person_lname)
 VALUES ("", "");
 -- Add a new customer to the database
 INSERT INTO customer (customer_fname, customer_lname, library_card, fines)
 VALUES ("", "", 000000, 000);
--- Update the rold of an employee in the database
-UPDATE employee 
-SET role_id = 0, person_id = 0
-WHERE employee_id = 0;
-/*Update the amount of fines the customer has left to pay
- or add more if they continue to not return books by their id */
-UPDATE customer 
-SET fines = 0
- WHERE customer_id = 0;
- -- Delete an employee from the database by their id number
-DELETE FROM employee
-WHERE employee_id = 0;
--- Delete a customer from the database by their id number
-DELETE FROM customer 
-WHERE customer_id = 0;
--- List all the books and if they are checked in or out
-SELECT * FROM book_inventory;
-
+--READ
+-- Get a list of all the people in the database waiting to have a role aplied to them
+SELECT * 
+FROM people;
+-- Get a list of all the current customers in the database 
+SELECT * 
+FROM customer;
 /*Grabs all info from customer table and book inventory table
 the book the customer has and if they've returned it or not */
 SELECT * 
 FROM customer 
 LEFT JOIN book_inventory
 ON customer.customer_id = book_inventory.customer_id;
-/* Grabs a list of all the current books and the author that published the book
- from the book and book_author table and combines it into one table */
-SELECT book.book_name, book_author.author_fname, book_author.author_lname 
-FROM book 
-INNER JOIN book_author
-ON book.author_id = book_author.author_id;
+/*Grabs all info from customer table and book inventory table
+the book the customer has and if they've returned it or not */
+SELECT * 
+FROM customer 
+LEFT JOIN book_inventory
+ON customer.customer_id = book_inventory.customer_id;
+
+-- List all the books and if they are checked in or out
+SELECT * FROM book_inventory;
+
+--UPDATE
+
+-- Update the rold of an employee in the database
+UPDATE employee 
+SET role_id = 0, person_id = 0
+WHERE employee_id = 0;
+
+
+/*Update the amount of fines the customer has left to pay
+ or add more if they continue to not return books by their id */
+UPDATE customer 
+SET fines = 0
+ WHERE customer_id = 0;
+ 
+ 
+--DELETE
+
+
+ -- Delete an employee from the database by their id number
+DELETE FROM employee
+WHERE employee_id = 0;
+
+
+-- Delete a customer from the database by their id number
+DELETE FROM customer 
+WHERE customer_id = 0;
+
+
+-- Allows yopu to be like Justin and delete the entire database
+SET SQL_SAFE_UPDATES = 0;
+DROP DATABASE caseStudy3;
+
+
+
+
+
+
+
